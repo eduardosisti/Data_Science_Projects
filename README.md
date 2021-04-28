@@ -17,7 +17,7 @@ então ser executado em qualquer sistema operacional que possua os seguintes rec
 Minimo código necessário para utilizar um flask app junto com o nginx
 
 
-Faça download da pasta
+Faça download com git clone e entre na pasta
 
 ```
 cd ./Flask
