@@ -48,9 +48,9 @@ Minima infraestrutura necessário para criar um dashboard utilizando o Dash, fla
    ```
     cd ./flask_dash_nginx_uwsgi/flask_app/Dockerfile
    ```
-   Parametros default de login e senha:
-   login:eduardo
-   senha:teste
+Default | Login | Senha
+--- | --- | ---
+Parametros:| **eduardo** | **teste**
    
    4. Construa seu Dashboard no arquivo:
    ```
