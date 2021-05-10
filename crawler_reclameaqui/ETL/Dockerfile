@@ -12,5 +12,4 @@ RUN python3 -m nltk.downloader punkt
 RUN python3 -m nltk.downloader wordnet
 RUN python3 -m nltk.downloader words
 
-CMD ["python","app.py"]
-
+CMD ["python", "./manage.py"]

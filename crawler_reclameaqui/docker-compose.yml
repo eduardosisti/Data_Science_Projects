@@ -16,7 +16,7 @@ services:
 #   Set a volume some that database is not lost after shutting down the container.
 #   I used the name postgres-data but you can changed it to something else.
     volumes:
-      - postgres-db:/var/lib/postgresql/data
+      - postgres-db-reclameaqui:/var/lib/postgresql/data
     expose:
       - 5432
 
@@ -53,6 +53,5 @@ services:
       - "5000:5000"
 
 volumes:
-  postgres-db:
-    external: true
+  postgres-db-reclameaqui:
   arquivos:

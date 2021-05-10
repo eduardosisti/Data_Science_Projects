@@ -10,7 +10,7 @@ import os
 def insert_carga():
     conexao = banco_de_dados()
     consulta = conexao.consultar('select reclamacoes.link from reclamacoes')
-    if len(consulta) == 0:
+    if consulta is None or len(consulta) == 0:
         consulta = []
     else:
         consulta = list(consulta[0])
