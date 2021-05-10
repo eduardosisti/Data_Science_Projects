@@ -1,0 +1,58 @@
+version: "3.7"
+services:
+  postgres-db:
+#   Use the Docker Image postgres. This will pull the newest release.
+    image: "postgres"
+#   Give the container the name my_postgres. You can changes to something else.
+    container_name: "postgres-db"
+#   Setup the username, password, and database name. You can changes these values.
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yourpasswordhere12345
+      - POSTGRES_DB=reclameaqui
+#   Maps port 54320 (localhost) to port 5432 on the container. You can change the ports to fix your needs.
+    ports:
+      - "54320:5432"
+#   Set a volume some that database is not lost after shutting down the container.
+#   I used the name postgres-data but you can changed it to something else.
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    expose:
+      - 5432
+
+  webscraping:
+    build: ./Webscraping
+    container_name: "reclameaqui_scraping"
+    environment:
+#      - RECLAME_AQUI_EMPRESA=magazine-luiza-luizacred
+       - RECLAME_AQUI_EMPRESA=adimplere
+       - VOLUME_NAME=meusarquivos
+    volumes:
+      - arquivos:/meusarquivos
+
+  etl:
+    container_name: "reclameaqui_etl"
+    build: ./ETL
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - PROCESS_PATH=/meusarquivos/reclamacoes.csv
+      - DB_SERVICE_NAME=postgres-db
+      - DB_DATABASE=reclameaqui
+      - DB_USER=postgres
+      - DB_PASS=yourpasswordhere12345
+      - DB_PORT=5432
+      - VOLUME_NAME=meusarquivos
+    links:
+      - postgres-db:postgres-db
+    volumes:
+      - arquivos:/meusarquivos
+    depends_on:
+      - webscraping
+      - postgres-db
+    ports:
+      - "5000:5000"
+
+volumes:
+  postgres-db:
+    external: true
+  arquivos:
