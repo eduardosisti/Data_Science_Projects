@@ -27,6 +27,8 @@ services:
 #      - RECLAME_AQUI_EMPRESA=magazine-luiza-luizacred
        - RECLAME_AQUI_EMPRESA=adimplere
        - VOLUME_NAME=meusarquivos
+    depends_on:
+      - postgres-db
     volumes:
       - arquivos:/meusarquivos
 

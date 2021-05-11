@@ -15,8 +15,12 @@ def create_app():
     register_migrate(app)
     app.app_context().push()
 
-    insert_carga()
-
     return app
 
 flask_app = create_app()
+user_cli = AppGroup('import')
+flask_app.cli.add_command(user_cli)
+
+@user_cli.command('carga')
+def import_carga():
+    insert_carga()

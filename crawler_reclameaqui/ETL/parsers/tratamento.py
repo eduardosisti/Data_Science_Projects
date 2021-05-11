@@ -57,7 +57,6 @@ def classe_json(x, titulo):
         'instabilidade': 0,
         'contrato': 0,
         'desbloquear': 0,
-        'hacker': 0,
         'quitar': 0
     }
 
